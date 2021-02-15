@@ -55,8 +55,8 @@ fi
 status_cmd="${name}_status"
 stop_cmd="${name}_stop"
 
-command="${lazylibrarian_dir}/LazyLibrarian.py"
-command_args="--daemon --quiet --pidfile ${lazylibrarian_pid} --datadir ${lazylibrarian_datadir} ${lazylibrarian_flags}"
+command="/usr/loca/bin/python3"
+command_args="${lazylibrarian_dir}/LazyLibrarian.py --daemon --quiet --pidfile ${lazylibrarian_pid} --datadir ${lazylibrarian_datadir} ${lazylibrarian_flags}"
 
 # Check for wget and refuse to start without it.
 if [ ! -x "${WGET}" ]; then
@@ -73,7 +73,7 @@ fi
 verify_lazylibrarian_pid() {
     # Make sure the pid corresponds to the lazylibrarian process.
     pid=`cat ${lazylibrarian_pid} 2>/dev/null`
-    ps -p ${pid} | grep -q "python ${lazylibrarian_dir}/LazyLibrarian.py"
+    ps -p ${pid} | grep -q "python3 ${lazylibrarian_dir}/LazyLibrarian.py"
     return $?
 }
 
